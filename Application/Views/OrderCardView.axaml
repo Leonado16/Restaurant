@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="clr-namespace:Restaurant.ViewModels"
+			 x:Class="Restaurant.Views.OrderCardView"
+			 x:DataType="vm:OrderCardViewModel">
+
+	<Border Padding="18" Height="200" VerticalAlignment="Top" Background="Beige">
+		<StackPanel>
+			<TextBlock Padding="10" Text="{Binding RecipeFollowed}"/>
+			<TextBlock Padding="10" Text="{Binding CurrentStepIndex}"/>
+			<ProgressBar Minimum="0" Maximum="100"
+						ShowProgressText="True"
+						 Value="{Binding OrderProgress}"
+						 ProgressTextFormat="{}{1:0}%">
+			</ProgressBar>
+		</StackPanel>
+	</Border>
+</UserControl>
