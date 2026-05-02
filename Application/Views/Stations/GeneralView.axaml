@@ -4,10 +4,9 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 xmlns:vm="clr-namespace:Restaurant.ViewModels"
 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-xmlns:mapsui="clr-namespace:Mapsui.UI.Avalonia;assembly=Mapsui.UI.Avalonia"
 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-x:Class="Restaurant.Views.GeneralView"
-x:DataType="vm:GeneralViewModel">
+x:DataType="vm:StationViewModel"
+x:Class="Restaurant.Views.GeneralView" >
 
     <!-- <Border Padding="25">
         <Grid ColumnDefinitions="210, *" RowDefinitions="*"

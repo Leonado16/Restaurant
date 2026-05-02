@@ -6,7 +6,7 @@ x:Class="Restaurant.Views.QueueView"
 x:DataType="vm:QueueViewModel">
 
 
-<Border Grid.Column="1" Background="#C5CCD9" Padding="1">
+<Border Background="White" Padding="10">
     <ScrollViewer>
         <ItemsControl ItemsSource= "{Binding OrderCards}"/>
     </ScrollViewer>
