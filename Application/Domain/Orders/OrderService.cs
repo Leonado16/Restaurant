@@ -2,7 +2,7 @@ using Restaurant.Models;
 
 namespace Restaurant.Domain;
 
-class OrderService
+public class OrderService
 {
     private RestaurantDataSet _dataSet;
     private OrderGenerator _orderGenerator;

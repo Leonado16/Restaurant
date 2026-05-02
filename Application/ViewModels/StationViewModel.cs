@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -6,112 +6,131 @@ using Restaurant.Domain;
 using Restaurant.Models;
 
 
+
 namespace Restaurant.ViewModels;
 
-public partial class StationViewModel //: AirportSelectionViewModel
+public partial class StationViewModel : ViewModelBase
 {
-    // [ObservableProperty]
-    // private Map _map = new();
+    private StationInstance _station;
+    private OrderQueue _queue;
+    private OrderService _orderService;
+    private QueueViewModel _queueViewModel;
 
-    // private readonly List<MemoryLayer> _markers = [];
-
-    // public GeneralViewModel() : base()
-    // {
-    //     Map.Layers.Add(OpenStreetMap.CreateTileLayer());
-    //     Map.Navigator.CenterOn(MPConvert(12.6560, 55.6179));
-
-    //     DrawMarkers();
-
-    //     Map.Info += OnMarkerClicked;
-    // }
-
-    // private void DrawMarkers()
-    // {
-    //     if (Map.Layers.Count > 1)
-    //     {
-    //         List<ILayer> layers = [.. Map.Layers];
-    //         _markers.Clear();
-    //         Map.Layers.Clear();
-    //         Map.Layers.Add(layers[0]);
-    //     }
-
-    //     foreach (Airport airport in Airports)
-    //     {
-    //         string color = "#588098";
-    //         if (airport == SelectedAirport) color = "#78d375";
-    //         if (SelectedAirport is not null)
-    //         {
-    //             List<Flight> flights = StaticData.FlightDataService.GetFlights(SelectedAirport);
-    //             foreach (Flight flight in flights)
-    //             {
-    //                 if (airport.IataCode == flight.ArrivalAirport)
-    //                 {
-    //                     color = "#d37575";
-    //                 }
-    //             }
-    //         }
-
-    //         AddPin(MPConvert(airport.Longitude, airport.Latitude), airport.IataCode, color);
-    //     }
-
-    //     Map.Layers.Add(_markers);
-    // }
+    public string StationType => _station.Type;
 
 
-    // [RelayCommand]
-    // public void Search()
-    // {
-    //     if (SelectedAirport is null)
-    //     {
-    //         return;
-    //     }
+    public StationViewModel(
+            StationInstance station,
+            OrderQueue queue,
+            OrderService orderService,
+            QueueViewModel queueViewModel)
+    {
+        _station = station;
+        _queue = queue;
+        _orderService = orderService;
+        _queueViewModel = queueViewModel;
+    }
 
-    //     StaticData.UserPreferences.SelectedAirport = SelectedAirport;
 
-    //     _ = MoveTo(SelectedAirport);
-    //     DrawMarkers();
-    // }
+    [ObservableProperty]
+    private bool isBusy;
 
-    // [RelayCommand]
-    // public void Clear()
-    // {
-    //     SelectedAirport = null;
-    //     StaticData.UserPreferences.SelectedAirport = SelectedAirport;
-    //     DrawMarkers();
-    // }
+    [RelayCommand(CanExecute = nameof(CanExecuteStep))]
+    private async Task ExecuteStep()
+    {
+        var order = FindExecutableOrder();
 
-    // private async Task MoveTo(Airport airport)
-    // {
-    //     Map.Navigator.CenterOn(MPConvert(airport.Longitude, airport.Latitude), 200);
-    //     await Task.Delay(200);
-    //     Map.Navigator.ZoomTo(5000, 200);
-    // }
+        if (order == null)
+        {
+            return;
+        }
 
-    // private void OnMarkerClicked(object? sender, MapInfoEventArgs e)
-    // {
-    //     var mapInfo = e.GetMapInfo(_markers);
-    //     if (mapInfo?.Feature is PointFeature clickedFeature)
-    //     {
-    //         var label = clickedFeature["Label"]?.ToString();
+        IsBusy = true;
+        _station.IsBusy = true;
 
-    //         foreach (Airport airport in Airports)
-    //         {
-    //             if (airport.IataCode == label)
-    //             {
-    //                 _ = MoveTo(airport);
-    //                 SelectedAirport = airport;
-    //                 StaticData.UserPreferences.SelectedAirport = SelectedAirport;
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     DrawMarkers();
-    // }
+        var step = order.RecipeFollowed.Steps[order.CurrentStepIndex];
 
-    // private MPoint MPConvert(double x, double y)
-    // {
-    //     return SphericalMercator.FromLonLat(x, y).ToMPoint();
-    // }
+        await Task.Delay(step.Duration * 1000);
+
+        _orderService.CompleteCurrentStep(order);
+        _queueViewModel.Refresh();
+
+        _station.IsBusy = false;
+        IsBusy = false;
+    }
+
+    private bool CanExecuteStep()
+    {
+        if (IsBusy)
+        {
+            return false;
+        }
+
+        return FindExecutableOrder() != null;
+    }
+
+    private Order? FindExecutableOrder()
+    {
+        return _queue.Snapshot().FirstOrDefault(order =>
+        order.CurrentStepIndex < order.RecipeFollowed.Steps.Count &&
+        order.RecipeFollowed.Steps[order.CurrentStepIndex].StationType == _station.Type);
+    }
+}
+
+// [RelayCommand]
+// public void Search()
+// {
+//     if (SelectedAirport is null)
+//     {
+//         return;
+//     }
+
+//     StaticData.UserPreferences.SelectedAirport = SelectedAirport;
+
+//     _ = MoveTo(SelectedAirport);
+//     DrawMarkers();
+// }
+
+// [RelayCommand]
+// public void Clear()
+// {
+//     SelectedAirport = null;
+//     StaticData.UserPreferences.SelectedAirport = SelectedAirport;
+//     DrawMarkers();
+// }
+
+// private async Task MoveTo(Airport airport)
+// {
+//     Map.Navigator.CenterOn(MPConvert(airport.Longitude, airport.Latitude), 200);
+//     await Task.Delay(200);
+//     Map.Navigator.ZoomTo(5000, 200);
+// }
+
+// private void OnMarkerClicked(object? sender, MapInfoEventArgs e)
+// {
+//     var mapInfo = e.GetMapInfo(_markers);
+//     if (mapInfo?.Feature is PointFeature clickedFeature)
+//     {
+//         var label = clickedFeature["Label"]?.ToString();
+
+//         foreach (Airport airport in Airports)
+//         {
+//             if (airport.IataCode == label)
+//             {
+//                 _ = MoveTo(airport);
+//                 SelectedAirport = airport;
+//                 StaticData.UserPreferences.SelectedAirport = SelectedAirport;
+//                 break;
+//             }
+//         }
+//     }
+//     DrawMarkers();
+// }
+
+// private MPoint MPConvert(double x, double y)
+// {
+//     return SphericalMercator.FromLonLat(x, y).ToMPoint();
+// }
 
 //     private void AddPin(MPoint point, string name, string color = "#588098")
 //     {
@@ -139,4 +158,3 @@ public partial class StationViewModel //: AirportSelectionViewModel
 
 //         _markers.Add(markerLayer);
 //     }
-}

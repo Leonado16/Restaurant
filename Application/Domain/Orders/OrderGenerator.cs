@@ -5,7 +5,7 @@ using Restaurant.Models;
 
 namespace Restaurant.Domain;
 
-class OrderGenerator
+public class OrderGenerator
 {
     private Random _random = new();
     public Recipe GetRandomRecipe(List<Recipe> recipes)

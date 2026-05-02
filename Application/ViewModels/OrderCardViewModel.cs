@@ -16,14 +16,26 @@ public partial class OrderCardViewModel : ViewModelBase
     private int _currentStepIndex;
 
     [ObservableProperty]
+    private string _currentStepDisplay = "";
+
+    [ObservableProperty]
     private double _orderProgress;
-
-
     public OrderCardViewModel(Order order)
     {
         RecipeFollowed = order.RecipeFollowed.Name; 
         CurrentStepIndex = order.CurrentStepIndex;
         OrderProgress = order.OrderProgress;
+
+        if (order.CurrentStepIndex < order.RecipeFollowed.Steps.Count)
+        {
+            int displayNumber = order.CurrentStepIndex + 1;
+            string stepText = order.RecipeFollowed.Steps[order.CurrentStepIndex].Step;
+            CurrentStepDisplay = $"{displayNumber}. {stepText}";
+        }
+        else
+        {
+            CurrentStepDisplay = "Completed";
+        }
     }
 }
 

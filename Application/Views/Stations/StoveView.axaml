@@ -1,69 +1,14 @@
 <UserControl
 xmlns="https://github.com/avaloniaui"
-xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-xmlns:vm="using:Restaurant.ViewModels"
-xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-x:DataType="vm:StationViewModel"
-x:Class="Restaurant.Views.StoveView" >
-    <!-- <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Margin="10" Spacing="10" Orientation="Horizontal">
-            <Button Content="Export flight data" Command="{Binding ExportFlightDataCommand}" Classes="accent" />
-            <Button Content="Export analytics output" Command="{Binding ExportAnalyticsOutputCommand}" Classes="accent" />
-        </StackPanel>
-        <TabControl>
-            <TabControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="1" ColumnSpacing="2.5"/>
-                </ItemsPanelTemplate>
-            </TabControl.ItemsPanel>
-            <TabItem Header="BUSIEST ROUTES">
-                <DataGrid Margin="20" ItemsSource="{Binding BusiestRoutes}"
-                          IsReadOnly="True"
-                          CanUserReorderColumns="True"
-                          CanUserResizeColumns="True"
-                          CanUserSortColumns="False"
-                          GridLinesVisibility="All"
-                          BorderThickness="1" BorderBrush="Gray">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Departure airport"  Binding="{Binding DepartureAirport}"/>
-                        <DataGridTextColumn Header="Arrival airport" Binding="{Binding ArrivalAirport}" />
-                        <DataGridTextColumn Header="Count" Binding="{Binding Count}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem >
-            <TabItem Header="TOP AIRLINES BY VOLUME">
-                <DataGrid Margin="20" ItemsSource="{Binding TopAirlines}"
-                          IsReadOnly="True"
-                          CanUserReorderColumns="True"
-                          CanUserResizeColumns="True"
-                          CanUserSortColumns="False"
-                          GridLinesVisibility="All"
-                          BorderThickness="1" BorderBrush="Gray">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Airline code"  Binding="{Binding AirlineCode}"/>
-                        <DataGridTextColumn Header="Airline name" Binding="{Binding AirlineName}" />
-                        <DataGridTextColumn Header="Flight count" Binding="{Binding FlightCount}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="TOP AIRPORTS BY VOLUME">
-                <DataGrid ItemsSource="{Binding TopAirports}"
-                          IsReadOnly="True"
-                          CanUserReorderColumns="True"
-                          CanUserResizeColumns="True"
-                          CanUserSortColumns="False"
-                          GridLinesVisibility="All"
-                          BorderThickness="1" BorderBrush="Gray">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Airport code"  Binding="{Binding AirportCode}"/>
-                        <DataGridTextColumn Header="Flight count" Binding="{Binding FlightCount}" />
-                        <DataGridTextColumn Header="Departure count" Binding="{Binding DepartureCount}" />
-                        <DataGridTextColumn Header="Arrival count" Binding="{Binding ArrivalCount}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-        </TabControl>
-    </DockPanel> -->
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="clr-namespace:Restaurant.ViewModels"
+			 x:Class="Restaurant.Views.StoveView"
+			 x:DataType="vm:StationViewModel">
+
+    <StackPanel Spacing="10">
+    <TextBlock Text="{Binding StationType}" FontSize="20"></TextBlock>
+    <TextBlock Text="{Binding IsBusy, StringFormat=Busy: {0}}"></TextBlock>
+    <Button Content="Execute Step" Command="{Binding ExecuteStepCommand}"></Button>
+</StackPanel>
+
 </UserControl>

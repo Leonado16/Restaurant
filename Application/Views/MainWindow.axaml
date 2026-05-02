@@ -17,41 +17,43 @@
     <DockPanel>
         <!-- TOP PANEL -->
         <Border DockPanel.Dock="Top"
-                Height="38"
+                Height="140"
                 Background="#C0544C"
-                Padding="0">
-
+                Padding="10">
+            <views:QueueView DataContext="{Binding Queue}" />
         </Border>
 
         <!-- TABS -->
         <Border>
-            <TabControl TabStripPlacement="Bottom">
-                <TabControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Rows="1" ColumnSpacing="2.5"/>
-                    </ItemsPanelTemplate>
-                </TabControl.ItemsPanel>
-                <TabItem Header="General">
-                    <views:GeneralView />
-                </TabItem >
-                <TabItem Header="Cutting">
-                    <views:CuttingView />
-                </TabItem>
-                <TabItem Header="Stove">
-                    <views:StoveView />
-                </TabItem>
-                <TabItem Header="Oven">
-                    <views:OvenView />
-                </TabItem>
-                <TabItem Header="Grill">
-                    <views:GrillView />
-                </TabItem>
-                
-                <!--Made the queue a tab for now-->
-                <TabItem Header="Queue">
-                    <views:QueueView DataContext="{Binding Queue}"/>
-                </TabItem>
-            </TabControl>
+            <TabControl ItemsSource="{Binding Stations}" TabStripPlacement="Bottom">
+
+
+                <TabControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:StationViewModel">
+                        <TextBlock Text="{Binding StationType}" />
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+
+                <!-- TAB CONTENT -->
+                <TabControl.ContentTemplate>
+                    <DataTemplate x:DataType="vm:StationViewModel">
+                        <views:StationView />
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+
+                <!-- <TabControl.ItemTemplate>
+                <DataTemplate>
+                <TextBlock Text="{Binding StationType}" />
+                </DataTemplate>
+                </TabControl.ItemTemplate>
+
+                <TabControl.ContentTemplate>
+                <DataTemplate>
+                <views:StationView />
+                </DataTemplate>
+                </TabControl.ContentTemplate> -->
+                </TabControl>
+
         </Border>
     </DockPanel>
 </Window>

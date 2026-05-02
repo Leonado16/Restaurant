@@ -2,7 +2,7 @@
 xmlns="https://github.com/avaloniaui"
 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 xmlns:vm="clr-namespace:Restaurant.ViewModels"
-x:Class="Restaurant.Views.CuttingView"
+x:Class="Restaurant.Views.StationView"
 x:DataType="vm:StationViewModel">
 
     <StackPanel Spacing="10">

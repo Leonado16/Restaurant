@@ -6,11 +6,15 @@ x:Class="Restaurant.Views.QueueView"
 x:DataType="vm:QueueViewModel">
 
 
-<Border Background="White" Padding="10">
-    <ScrollViewer>
-        <ItemsControl ItemsSource= "{Binding OrderCards}"/>
-    </ScrollViewer>
-</Border>
+    <Border Background="#C0544C" Padding="1">
+        <ItemsControl ItemsSource= "{Binding OrderCards}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Border>
 
     <!-- <Border Padding="25">
     <Grid ColumnDefinitions="210, *" RowDefinitions="*">

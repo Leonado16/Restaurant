@@ -1,11 +1,10 @@
 using Avalonia.Controls;
-using Restaurant.ViewModels;
 
 namespace Restaurant.Views;
 
-public partial class GeneralView : UserControl
+public partial class StationView : UserControl
 {
-    public GeneralView()
+    public StationView()
     {
         InitializeComponent();
     }

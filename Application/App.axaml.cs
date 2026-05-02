@@ -28,33 +28,8 @@ public partial class App : Application
             DisableAvaloniaDataAnnotationValidation();
             desktop.ShutdownRequested += OnShutdownRequested;
 
-            try
-            {
-                Console.WriteLine("Loading restaurant data...");
+        
                 StaticData.RestaurantDataService.LoadData();
-
-
-                var recipes = StaticData.RestaurantDataService.GetRecipes();
-                Console.WriteLine($"Recipes loaded: {recipes.Count}");
-
-                if (recipes.Count > 0)
-                {
-                    Console.WriteLine($"First recipe: {recipes[0].Name}");
-                }
-                else
-                {
-                    Console.WriteLine("NO RECIPES FOUND");
-
-
-                    Console.WriteLine("Restaurant data loaded successfully.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("CRASH IN LoadData():");
-                Console.WriteLine(ex);
-            }
-
 
             desktop.MainWindow = new MainWindow
             {

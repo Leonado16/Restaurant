@@ -16,6 +16,7 @@ public partial class QueueViewModel : ViewModelBase
     public QueueViewModel(OrderQueue orderQueue)
     {
         _orderQueue = orderQueue;
+        Refresh();
     }
 
     public void Refresh()

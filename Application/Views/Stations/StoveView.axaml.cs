@@ -9,11 +9,5 @@ public partial class StoveView : UserControl
     public StoveView()
     {
         InitializeComponent();
-        Loaded += OnLoading;
-    }
-
-    private void OnLoading(object? sender, EventArgs e)
-    {
-        DataContext = new StoveViewModel();
     }
 }

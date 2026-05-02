@@ -4,7 +4,7 @@ namespace Restaurant.Models;
 
 public class RestaurantDataSet
 {
-    public List<Recipe> Recipes { get; set; } = [];
-    public List<Ingredient> Ingredients { get; set; } = [];
-    public List<Station> Stations { get; set; } = [];
+    public List<Recipe> Recipes { get; set; } = new();
+    public List<Ingredient> Ingredients { get; set; } = new();
+    public List<Station> Stations { get; set; } = new();
 }
