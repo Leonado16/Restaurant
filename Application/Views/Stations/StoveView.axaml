@@ -5,10 +5,5 @@ xmlns="https://github.com/avaloniaui"
 			 x:Class="Restaurant.Views.StoveView"
 			 x:DataType="vm:StationViewModel">
 
-    <StackPanel Spacing="10">
-    <TextBlock Text="{Binding StationType}" FontSize="20"></TextBlock>
-    <TextBlock Text="{Binding IsBusy, StringFormat=Busy: {0}}"></TextBlock>
-    <Button Content="Execute Step" Command="{Binding ExecuteStepCommand}"></Button>
-</StackPanel>
 
 </UserControl>

@@ -25,30 +25,5 @@ public class RestaurantDataService : IRestaurantDataService
     public List<Recipe> GetRecipes() => _dataSet.Recipes;
     public List<Ingredient> GetIngredients() => _dataSet.Ingredients;
     public List<Station> GetStations() => _dataSet.Stations;
-    
-    // public List<Flight> GetFlights(Airport airport)
-    // {
-    //     List<Flight> result = [];
-    //     foreach (Flight flight in _dataSet.Flights)
-    //     {
-    //         if (flight.DepartureAirport == airport.IataCode)
-    //         {
-    //             result.Add(flight);
-    //         }
-    //     }
-
-    //     return result;
-    // }
-
-    // public Airport? GetAirport(string IataCode)
-    // {
-    //     foreach (Airport airport in _dataSet.Airports)
-    //     {
-    //         if (airport.IataCode == IataCode)
-    //         {
-    //             return airport;
-    //         }
-    //     }
-    //     return null;
-    // }
 }
+    

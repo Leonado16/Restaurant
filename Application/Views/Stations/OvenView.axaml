@@ -4,9 +4,4 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 xmlns:vm="clr-namespace:Restaurant.ViewModels"
 x:Class="Restaurant.Views.OvenView"
 x:DataType="vm:StationViewModel">
-<StackPanel Spacing="10">
-    <TextBlock Text="{Binding StationType}" FontSize="20"></TextBlock>
-    <TextBlock Text="{Binding IsBusy, StringFormat=Busy: {0}}"></TextBlock>
-    <Button Content="Execute Step" Command="{Binding ExecuteStepCommand}"></Button>
-</StackPanel>
 </UserControl>

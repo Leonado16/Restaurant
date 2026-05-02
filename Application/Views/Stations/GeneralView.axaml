@@ -5,46 +5,5 @@ xmlns:vm="clr-namespace:Restaurant.ViewModels"
 x:Class="Restaurant.Views.GeneralView"
 x:DataType="vm:StationViewModel">
 
- <StackPanel Spacing="10">
-    <TextBlock Text="{Binding StationType}" FontSize="20"></TextBlock>
-    <TextBlock Text="{Binding IsBusy, StringFormat=Busy: {0}}"></TextBlock>
-    <Button Content="Execute Step" Command="{Binding ExecuteStepCommand}"></Button>
-</StackPanel>
-
-    <!-- <Border Padding="25">
-    <Grid ColumnDefinitions="210, *" RowDefinitions="*"
-    >
-    <Border Grid.Column="0" Background="#C5CCD9"
-    Padding="20" Margin="0,0,25,0" Height="200" VerticalAlignment="Top">
-    <StackPanel Background="#C5CCD9"
-    Spacing="15" >
-    <TextBlock Foreground="#112E50"
-    FontWeight="DemiBold"
-    HorizontalAlignment="Center"
-    >SELECT AIRPORT</TextBlock>
-
-    <ComboBox ItemsSource="{Binding Airports}"
-    SelectedItem="{Binding SelectedAirport}"
-    PlaceholderText="..."
-    HorizontalAlignment="Center"
-    Width="150">
-    </ComboBox>
-    <Button HorizontalAlignment="Center"
-    Width="150"
-    HorizontalContentAlignment="Center"
-    Command="{Binding Search}">SEARCH</Button>
-    <Button HorizontalAlignment="Center"
-    Width="150"
-    HorizontalContentAlignment="Center"
-    Command="{Binding Clear}">CLEAR</Button>
-    </StackPanel>
-    </Border>
-
-    <Border Grid.Column="1" Background="#C5CCD9" Padding="1">
-    <mapsui:MapControl Map="{Binding Map}" />
-    </Border>
-
-    </Grid>
-    </Border> -->
 
 </UserControl>

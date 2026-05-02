@@ -6,7 +6,7 @@ x:Class="Restaurant.Views.StationView"
 x:DataType="vm:StationViewModel">
 
     <StackPanel Spacing="10">
-    <TextBlock Text="{Binding StationType}" FontSize="20"></TextBlock>
+    <!-- For testing -->
     <TextBlock Text="{Binding IsBusy, StringFormat=Busy: {0}}"></TextBlock>
     <Button Content="Execute Step" Command="{Binding ExecuteStepCommand}"></Button>
 </StackPanel>
