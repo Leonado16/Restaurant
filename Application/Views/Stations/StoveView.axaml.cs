@@ -4,9 +4,9 @@ using Restaurant.ViewModels;
 
 namespace Restaurant.Views;
 
-public partial class AnalyticsView : UserControl
+public partial class StoveView : UserControl
 {
-    public AnalyticsView()
+    public StoveView()
     {
         InitializeComponent();
         Loaded += OnLoading;
@@ -14,6 +14,6 @@ public partial class AnalyticsView : UserControl
 
     private void OnLoading(object? sender, EventArgs e)
     {
-        DataContext = new AnalyticsViewModel();
+        DataContext = new StoveViewModel();
     }
 }

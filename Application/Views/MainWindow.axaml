@@ -35,17 +35,18 @@
                     <views:GeneralView />
                 </TabItem >
                 <TabItem Header="Cutting">
-                    <views:AnalyticsView />
+                    <views:CuttingView />
                 </TabItem>
                 <TabItem Header="Stove">
-                    <views:AnalyticsView />
+                    <views:StoveView />
                 </TabItem>
                 <TabItem Header="Oven">
-                    <views:AnalyticsView />
+                    <views:OvenView />
                 </TabItem>
                 <TabItem Header="Grill">
-                    <views:AnalyticsView />
+                    <views:GrillView />
                 </TabItem>
+                
                 <!--Made the queue a tab for now-->
                 <TabItem Header="Queue">
                     <views:QueueView DataContext="{Binding Queue}"/>

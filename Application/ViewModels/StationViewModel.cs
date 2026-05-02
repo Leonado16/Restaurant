@@ -8,7 +8,7 @@ using Restaurant.Models;
 
 namespace Restaurant.ViewModels;
 
-public partial class GeneralViewModel //: AirportSelectionViewModel
+public partial class StationViewModel //: AirportSelectionViewModel
 {
     // [ObservableProperty]
     // private Map _map = new();

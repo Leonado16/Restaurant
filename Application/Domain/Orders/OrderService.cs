@@ -22,7 +22,7 @@ class OrderService
         var order = new Order
         {
             RecipeFollowed = recipeToFollow,
-            CurrentStepIndex = 1,
+            CurrentStepIndex = 0,
             OrderProgress = 0,
         };
 
@@ -33,7 +33,7 @@ class OrderService
     public void CompleteCurrentStep(Order order)
     {
         order.CurrentStepIndex++;
-        order.OrderProgress = order.CurrentStepIndex / order.RecipeFollowed.Steps.Count * 100;
+        order.OrderProgress = (double)order.CurrentStepIndex / order.RecipeFollowed.Steps.Count * 100;
     }
 
 }
