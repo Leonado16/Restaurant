@@ -1,4 +1,4 @@
-# Flight Tracker app
+# Restaurant app
 
 ## Setup instructions
 
