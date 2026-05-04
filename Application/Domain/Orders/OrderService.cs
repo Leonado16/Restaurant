@@ -33,7 +33,10 @@ public class OrderService
     public void CompleteCurrentStep(Order order)
     {
         order.CurrentStepIndex++;
-        order.OrderProgress = (double)order.CurrentStepIndex / order.RecipeFollowed.Steps.Count * 100;
+        if (order.RecipeFollowed.Steps.Count <= order.CurrentStepIndex)
+        {
+            _orderQueue.RemoveFromQueue(order);
+        }
     }
 
 }

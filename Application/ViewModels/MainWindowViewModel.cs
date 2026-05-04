@@ -18,8 +18,7 @@ public partial class MainWindowViewModel : ViewModelBase
         var orderQueue = new OrderQueue();
         var orderService = new OrderService(dataSet, orderGenerator, orderQueue);
 
-        // for testing
-        orderService.CreateOrder();
+        // for starting
         orderService.CreateOrder();
         //
         Queue = new QueueViewModel(orderQueue);
@@ -29,12 +28,11 @@ public partial class MainWindowViewModel : ViewModelBase
             for (int i = 0; i < stationDefiniton.DefaultCount; i++)
             {
                 var instance = new StationInstance(stationDefiniton.Type);
+                var stationName = stationDefiniton.Type + " " + (i + 1);
 
-                Stations.Add(new StationViewModel(instance, orderQueue, orderService, Queue)
+                Stations.Add(new StationViewModel(stationName,instance, orderQueue, orderService, Queue)
                 );
             }
-
-            var order = orderQueue.Snapshot().First();
         }
     }
 }

@@ -6,11 +6,12 @@
 
 	<Border Padding="18" Margin="10, 0, 10, 0"  Height="200" VerticalAlignment="Top" Background="Beige">
 		<StackPanel>
-			<TextBlock Padding="10" Text="{Binding RecipeFollowed}"/>
-			<TextBlock Padding="10" Text="{Binding CurrentStepDisplay}"/>
+			<TextBlock Padding="10, 2" Text="{Binding Order.RecipeFollowed.Name}"/>
+			<TextBlock Padding="2 2" Text="{Binding Order.CurrentWorkstation}"/>
+			<TextBlock Padding="2, 2" Text="{Binding CurrentStepDisplay}"/>
 			<ProgressBar Minimum="0" Maximum="100"
 						ShowProgressText="True"
-						 Value="{Binding OrderProgress}"
+						 Value="{Binding Order.OrderProgress}"
 						 ProgressTextFormat="{}{1:0}%">
 			</ProgressBar>
 		</StackPanel>

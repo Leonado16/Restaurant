@@ -6,33 +6,29 @@ using Restaurant.Models;
 namespace Restaurant.ViewModels;
 
 public partial class OrderCardViewModel : ViewModelBase
-{    
-    [ObservableProperty]
-    private string? _recipeFollowed;
-
-    [ObservableProperty]
-    private int _currentStepIndex;
-
+{  
     [ObservableProperty]
     private string _currentStepDisplay = "";
 
     [ObservableProperty]
-    private double _orderProgress;
+    private Order? _order;
+    
     public OrderCardViewModel(Order order)
     {
-        RecipeFollowed = order.RecipeFollowed.Name; 
-        CurrentStepIndex = order.CurrentStepIndex;
-        OrderProgress = order.OrderProgress;
+        Order = order;
+        CurrentStepDisplay = GetStepText();
+    }
 
-        if (order.CurrentStepIndex < order.RecipeFollowed.Steps.Count)
+    private string GetStepText()
+    {
+
+        if (Order == null || Order.CurrentStepIndex >= Order.RecipeFollowed.Steps.Count)
         {
-            int displayNumber = order.CurrentStepIndex + 1;
-            string stepText = order.RecipeFollowed.Steps[order.CurrentStepIndex].Step;
-            CurrentStepDisplay = $"{displayNumber}. {stepText}";
+            return "Completed";
         }
-        else
-        {
-            CurrentStepDisplay = "Completed";
-        }
+    
+        int displayNumber = Order.CurrentStepIndex + 1;
+        string stepText = Order.RecipeFollowed.Steps[Order.CurrentStepIndex].Step;
+        return $"{displayNumber}. {stepText}";
     }
 }
